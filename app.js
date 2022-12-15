@@ -1,9 +1,9 @@
 const express = require("express");
 const cors = require("cors");
 const morgan = require("morgan");
-const route = require("../vary/src/routes");
+const route = require("./src/routes");
 
-const { globalErrorHandler } = require("../vary/src/utils/error");
+const { globalErrorHandler } = require("./src/utils/error");
 
 const createApp = () => {
   const app = express();
