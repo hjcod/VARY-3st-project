@@ -7,6 +7,7 @@ const development = {
   username: process.env.USER_NAME,
   password: process.env.USER_PASSWD,
   database: process.env.DB_NAME,
+  secret: process.env.SERVER_SECRET,
 };
 
 const production = {
@@ -16,6 +17,7 @@ const production = {
   username: process.env.USER_NAME,
   password: process.env.USER_PASSWD,
   database: process.env.DB_NAME,
+  secret: process.env.SERVER_SECRET,
 };
 
 const test = {
@@ -25,6 +27,7 @@ const test = {
   username: process.env.USER_NAME,
   password: process.env.USER_PASSWD,
   database: process.env.DB_NAME,
+  secret: process.env.SERVER_SECRET,
 };
 
 module.exports = { development, production, test };
