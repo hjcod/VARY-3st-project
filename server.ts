@@ -1,7 +1,7 @@
 require("dotenv").config();
 
-const { createApp } = require("./app");
-const { sequelize } = require("./src/models/index");
+import { createApp } from "./app";
+import { sequelize } from "./src/models/index";
 
 const startServer = async () => {
   const app = createApp();
@@ -11,7 +11,7 @@ const startServer = async () => {
     .then(() => {
       console.log("Connection has been established successfully.");
     })
-    .catch((err) => {
+    .catch((err: Error) => {
       console.error("Unable to connect to the database:", err);
     });
 

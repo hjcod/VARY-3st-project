@@ -1,7 +1,7 @@
-const express = require("express");
-const cors = require("cors");
-const morgan = require("morgan");
-const route = require("./src/routes");
+import express from "express";
+import cors from "cors";
+import morgan from "morgan";
+import { router } from "./src/routes";
 
 const { globalErrorHandler } = require("./src/utils/error");
 
@@ -12,10 +12,10 @@ const createApp = () => {
   app.use(cors());
   app.use(morgan("dev"));
 
-  app.use(route);
+  app.use(router);
   app.use(globalErrorHandler);
 
   return app;
 };
 
-module.exports = { createApp };
+export { createApp };

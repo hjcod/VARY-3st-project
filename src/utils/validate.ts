@@ -1,6 +1,6 @@
-const { raiseCustomError } = require("../utils/error");
+import { raiseCustomError } from "../utils/error";
 
-const validateEmail = (userEmail) => {
+export const validateEmail = (userEmail: string) => {
   const userEmailRegex =
     /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
@@ -9,16 +9,11 @@ const validateEmail = (userEmail) => {
   }
 };
 
-const validatePw = (password) => {
+export const validatePw = (password: string) => {
   const passwordRegex =
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/;
 
   if (!passwordRegex.test(password)) {
     return raiseCustomError("INVALID_PASSWORD", 401);
   }
-};
-
-module.exports = {
-  validateEmail,
-  validatePw,
 };

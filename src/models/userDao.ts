@@ -1,7 +1,7 @@
-const { Sequelize } = require("sequelize");
-const { sequelize } = require("../models/index");
+import { sequelize } from "../models/index";
+import { QueryTypes } from "sequelize";
 
-const getUserInfo = async () => {
+export const getUserInfo = async () => {
   const query = `SELECT id, email, TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI') created_at,TO_CHAR(TO_TIMESTAMP(last_login / 1000), 'YYYY-MM-DD HH24:MI') last_login, current_email_sent_number as total_email_number, current_webpage_view as total_webpage_view, a.total
   FROM tbl_user
   LEFT JOIN (
@@ -17,7 +17,7 @@ const getUserInfo = async () => {
   return result;
 };
 
-const getUserDetail = async (userId) => {
+export const getUserDetail = async (userId: string) => {
   const userInfo = await sequelize.query(
     `SELECT 
       email,
@@ -32,7 +32,7 @@ const getUserDetail = async (userId) => {
     FROM tbl_user
     WHERE id = '${userId}'`,
     {
-      type: sequelize.QueryTypes.SELECT,
+      type: QueryTypes.SELECT,
     }
   );
   const emailInfo = await sequelize.query(
@@ -46,7 +46,7 @@ const getUserDetail = async (userId) => {
     LEFT JOIN tbl_payment_schedule ps ON ps.customer_uid = u.id
     WHERE ph.type = 'EMAIL' AND ph.user_id = '${userId}' AND ph.status =TRUE AND ps.name LIKE '%발송%'`,
     {
-      type: sequelize.QueryTypes.SELECT,
+      type: QueryTypes.SELECT,
     }
   );
   const webpageInfo = await sequelize.query(
@@ -60,7 +60,7 @@ const getUserDetail = async (userId) => {
     LEFT JOIN tbl_payment_schedule ps ON ps.customer_uid = u.id
     WHERE ph.type = 'WEBPAGE' AND ph.user_id = '${userId}' AND ph.status =TRUE AND ps.name LIKE '%제공%'`,
     {
-      type: sequelize.QueryTypes.SELECT,
+      type: QueryTypes.SELECT,
     }
   );
   const paymentInfo = await sequelize.query(
@@ -77,14 +77,9 @@ const getUserDetail = async (userId) => {
     GROUP BY u.id
     `,
     {
-      type: sequelize.QueryTypes.SELECT,
+      type: QueryTypes.SELECT,
     }
   );
 
   return { userInfo, emailInfo, webpageInfo, paymentInfo };
-};
-
-module.exports = {
-  getUserInfo,
-  getUserDetail,
 };

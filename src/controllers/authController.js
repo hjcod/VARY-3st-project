@@ -1,5 +1,9 @@
 const authService = require("../services/authService");
+<<<<<<< HEAD
 const { catchAsync, raiseCustomError } = require("../utils/error.js");
+=======
+const { catchAsync, raiseCustomError } = require("../utils/error.ts");
+>>>>>>> 7860233 (Modify: convert js to ts)
 
 const signIn = catchAsync(async (req, res) => {
   const { email, password } = req.body;
