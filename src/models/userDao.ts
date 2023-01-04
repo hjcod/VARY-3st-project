@@ -12,7 +12,7 @@ export const getUserInfo = async () => {
   WHERE status = TRUE
   GROUP BY user_id) as a ON a.uid = tbl_user.id
   WHERE deleted_at ISNULL AND last_login IS NOT NULL
-  LIMIT 40`;
+  `;
   const [result] = await sequelize.query(query);
   return result;
 };

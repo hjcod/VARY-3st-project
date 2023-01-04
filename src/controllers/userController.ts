@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response } from "express";
 import * as userService from "../services/userService";
 import { catchAsync, raiseCustomError } from "../utils/error";
 
@@ -15,7 +15,5 @@ export const getUserDetail = catchAsync(async (req: Request, res: Response) => {
   }
 
   const userDetail = await userService.getUserDetail(userId);
-  console.log("사용자", userId);
-  console.log("데이터", userDetail);
   return res.status(200).json(userDetail);
 });
