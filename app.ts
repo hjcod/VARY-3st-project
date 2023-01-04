@@ -3,7 +3,7 @@ import cors from "cors";
 import morgan from "morgan";
 import { router } from "./src/routes";
 
-const { globalErrorHandler } = require("./src/utils/error");
+import { globalErrorHandler } from "./src/utils/error";
 
 const createApp = () => {
   const app = express();
