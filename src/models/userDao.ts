@@ -40,11 +40,19 @@ export const getUserDetail = async (userId: string) => {
     ph.plan,
     u.current_email_sent_number,
     TO_CHAR(TO_TIMESTAMP(ps.schedule_at / 1000), 'YYYY-MM-DD HH24:MI') schedule_at,
-    ps.amount
+    psa.amount amount
     FROM tbl_payment_history ph
     LEFT JOIN tbl_user u ON u.id = ph.user_id
     LEFT JOIN tbl_payment_schedule ps ON ps.customer_uid = u.id
-    WHERE ph.type = 'EMAIL' AND ph.user_id = '${userId}' AND ph.status =TRUE AND ps.name LIKE '%발송%'`,
+       LEFT JOIN(
+    	SELECT
+    		customer_uid id,
+    		amount 
+    	FROM tbl_payment_schedule ps
+    	WHERE is_back_to_free=false
+    	 ) psa ON psa.id = u.id
+    WHERE ph.type = 'EMAIL' AND ph.user_id = '${userId}' AND ph.status =TRUE AND ps.name LIKE '%발송%'
+    `,
     {
       type: QueryTypes.SELECT,
     }
@@ -54,11 +62,19 @@ export const getUserDetail = async (userId: string) => {
     ph.plan,
     u.current_webpage_view,
     TO_CHAR(TO_TIMESTAMP(ps.schedule_at / 1000), 'YYYY-MM-DD HH24:MI') schedule_at,
-    ps.amount
+    psa.amount amount
     FROM tbl_payment_history ph
     LEFT JOIN tbl_user u ON u.id = ph.user_id
     LEFT JOIN tbl_payment_schedule ps ON ps.customer_uid = u.id
-    WHERE ph.type = 'WEBPAGE' AND ph.user_id = '${userId}' AND ph.status =TRUE AND ps.name LIKE '%제공%'`,
+    LEFT JOIN(
+    	SELECT
+    		customer_uid id,
+    		amount 
+    	FROM tbl_payment_schedule ps
+    	WHERE is_back_to_free=false
+    	 ) psa ON psa.id = u.id
+    WHERE ph.type = 'WEBPAGE' AND ph.user_id = '${userId}' AND ph.status =TRUE AND ps.name LIKE '%제공%'
+    `,
     {
       type: QueryTypes.SELECT,
     }
