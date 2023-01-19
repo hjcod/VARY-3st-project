@@ -1,7 +1,7 @@
 const userDao = require("../models/userDao");
 
-export const getUserInfo = async () => {
-  const result = await userDao.getUserInfo();
+export const getUserInfo = async <pagination>(page:number|pagination) => {
+  const result = await userDao.getUserInfo(page);
   return result;
 };
 
@@ -9,3 +9,4 @@ export const getUserDetail = async (userId: string) => {
   const result = await userDao.getUserDetail(userId);
   return result;
 };
+
