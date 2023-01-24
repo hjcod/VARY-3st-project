@@ -12,3 +12,7 @@ export const getUserDetail = async (userId: string) => {
 export function searchByEmail() {
   throw new Error("Function not implemented.");
 }
+
+
+
+

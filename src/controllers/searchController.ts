@@ -1,10 +1,9 @@
 import { Request, Response } from "express";
-import * as searchService from "../services/userService";
+import * as searchService from "../services/searchService";
 import { catchAsync, raiseCustomError } from "../utils/error";
 
 export const searchWithEmail = catchAsync(async (req: Request, res: Response) => {
   const email = req.query.email
-  console.log(req.query.email)
-  const data = searchService.searchWithEmail();
+  const data = await searchService.searchWithEmail(email);
   return res.status(200).json(data);
 });

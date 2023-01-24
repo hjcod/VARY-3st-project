@@ -1,7 +1,7 @@
 import { sequelize } from "../models/index";
 import { QueryTypes } from "sequelize";
 
-export const searchByEmail = async (email: String) => {
+export const searchWithEmail = async (email: String) => {
   const search = await sequelize.query(
     `  	
     select
@@ -18,5 +18,6 @@ export const searchByEmail = async (email: String) => {
     {
       type: QueryTypes.SELECT
     }
-    )
+  )
+  return search;
 };
