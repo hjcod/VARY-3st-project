@@ -9,4 +9,6 @@ export const getUserDetail = async (userId: string) => {
   const result = await userDao.getUserDetail(userId);
   return result;
 };
-
+export function searchByEmail() {
+  throw new Error("Function not implemented.");
+}
