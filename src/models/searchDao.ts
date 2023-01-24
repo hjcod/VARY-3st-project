@@ -1,7 +1,7 @@
 import { sequelize } from "../models/index";
 import { QueryTypes } from "sequelize";
 
-export const searchWithEmail = async (email: String) => {
+export const searchWithEmail = async (email: string | import("qs").ParsedQs | string[] | import("qs").ParsedQs[] | undefined) => {
   const search = await sequelize.query(
     `  	
     select
