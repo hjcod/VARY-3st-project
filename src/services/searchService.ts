@@ -1,8 +1,6 @@
 import * as searchDao from "../models/searchDao";
 
-export const searchWithEmail = async (email: string | import("qs").ParsedQs | string[] | import("qs").ParsedQs[] | undefined) => {
+export const searchWithEmail = async (email: string) => {
   const result = await searchDao.searchWithEmail(email);
   return result;
 }
-
-
