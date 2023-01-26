@@ -10,3 +10,16 @@ export const getUserDetail = async (userId: string) => {
   return result;
 };
 
+export const getServiceInfo = async (userId: string) => {
+  const result = await userDao.getServiceInfo(userId);
+  return result;
+};
+
+export const getPaymentInfo = async (userId: string) => {
+  const result = await userDao.getPaymentInfo(userId);
+  return result;
+};
+
+
+
+

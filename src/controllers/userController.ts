@@ -14,9 +14,27 @@ export const getUserDetail = catchAsync(async (req: Request, res: Response) => {
   if (!userId) {
     raiseCustomError("NEED_USERINFO", 401);
   }
-
   const userDetail = await userService.getUserDetail(userId);
   return res.status(200).json(userDetail);
 });
 
+export const getServiceInfo = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+
+  if (!userId) {
+    raiseCustomError("NEED_USERINFO", 401);
+  }
+  const userDetail = await userService.getServiceInfo(userId);
+  return res.status(200).json(userDetail);
+});
+
+export const getPaymentInfo = catchAsync(async (req: Request, res: Response) => {
+  const userId = req.params.userId;
+
+  if (!userId) {
+    raiseCustomError("NEED_USERINFO", 401);
+  }
+  const userDetail = await userService. getPaymentInfo(userId);
+  return res.status(200).json(userDetail);
+});
 
