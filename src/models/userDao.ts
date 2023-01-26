@@ -21,7 +21,7 @@ export const getUserInfo = async (page:number) => {
   FROM tbl_payment_history
   WHERE status = TRUE
   GROUP BY user_id) as a ON a.uid = tbl_user.id
-  WHERE deleted_at ISNULL AND last_login IS NOT NULL
+  WHERE deleted_at ISNULL AND last_login IS NOT NULL AND deleted_at IS NULL
   LIMIT ${limit} OFFSET ${offset}
   `;
   const [result] = await sequelize.query(query);
