@@ -8,9 +8,8 @@ export const getUserInfo = async (page:number) => {
   `SELECT 
    id,
    email,
-   TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI')
-   created_at,TO_CHAR(TO_TIMESTAMP(last_login / 1000), 'YYYY-MM-DD HH24:MI') 
-   last_login, 
+   TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI')created_at,
+   TO_CHAR(TO_TIMESTAMP(last_login / 1000), 'YYYY-MM-DD HH24:MI')last_login, 
    current_email_sent_number as total_email_number,
    current_webpage_view as total_webpage_view, a.total
   FROM tbl_user
@@ -26,6 +25,21 @@ export const getUserInfo = async (page:number) => {
   `;
   const [result] = await sequelize.query(query);
   return result;
+};
+
+export const getUserInfoByEmail = async(email:string) => {
+  const query = 
+  `SELECT
+    id,
+    password,
+    email,
+    is_admin,
+    username
+  FROM tbl_user
+  WHERE email = '${email}'`
+  
+  const [result]= await sequelize.query(query)
+  return result
 };
 
 export const getUserDetail = async (userId: string) => {
