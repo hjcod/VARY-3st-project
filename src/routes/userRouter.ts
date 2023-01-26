@@ -4,6 +4,8 @@ import * as userController from "../controllers/userController";
 const router: Router = express.Router();
 
 router.get("", userController.getUserInfo);
-router.get("/:userId", userController.getUserDetail);
+router.get("/UserDetail/:userId", userController.getUserDetail);
+router.get("/Serviceinfo/:userId", userController.getServiceInfo);
+router.get("/Paymentinfo/:userId", userController.getPaymentInfo);
 
 module.exports = router;

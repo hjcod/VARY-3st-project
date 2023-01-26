@@ -12,7 +12,7 @@ export const searchWithEmail = async (email: string) => {
         u.current_webpage_view,
         p.total_amount
       FROM tbl_user u
-      LEFT JOIN tbl_payment_history as p 
+      LEFT JOIN tbl_payment_history as p
       ON u.id = p.user_id
       WHERE email like '%${email}%'`,
       {

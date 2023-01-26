@@ -9,9 +9,16 @@ export const getUserDetail = async (userId: string) => {
   const result = await userDao.getUserDetail(userId);
   return result;
 };
-export function searchByEmail() {
-  throw new Error("Function not implemented.");
-}
+
+export const getServiceInfo = async (userId: string) => {
+  const result = await userDao.getServiceInfo(userId);
+  return result;
+};
+
+export const getPaymentInfo = async (userId: string) => {
+  const result = await userDao.getPaymentInfo(userId);
+  return result;
+};
 
 
 
