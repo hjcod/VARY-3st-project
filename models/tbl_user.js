@@ -70,7 +70,7 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         defaultValue: true,
       },
-      created_at_unix_timestamp: {
+      created_at_unix_timestamp: { 
         type: DataTypes.BIGINT,
         allowNull: true,
       },

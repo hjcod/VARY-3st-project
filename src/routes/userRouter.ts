@@ -5,6 +5,8 @@ const router: Router = express.Router();
 
 router.post("/admin", userController.adminSignIn)
 router.get("", userController.getUserInfo);
-router.get("/:userId", userController.getUserDetail);
+router.get("/UserDetail/:userId", userController.getUserDetail);
+router.get("/Serviceinfo/:userId", userController.getServiceInfo);
+router.get("/Paymentinfo/:userId", userController.getPaymentInfo);
 
 module.exports = router;

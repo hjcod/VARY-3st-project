@@ -15,13 +15,23 @@ export const getUserDetail = async (userId: string) => {
   return result;
 };
 
+export const getServiceInfo = async (userId: string) => {
+  const result = await userDao.getServiceInfo(userId);
+  return result;
+};
+
+export const getPaymentInfo = async (userId: string) => {
+  const result = await userDao.getPaymentInfo(userId);
+  return result;
+};
+
 export const adminSignIn = async (email:string, password:string) =>{
   const user = await userDao.getUserInfoByEmail(email)
   
   const admin:boolean = user[0].is_admin
   const Email:string = user[0].email
   
-  const match = await bcrypt.compareSync(password, user.password);   // 비밀번호 bcrypt 인지 물어보기
+  const match = await bcrypt.compareSync(password, user.password);   
   
     if(!match){
           throw new Error('WRONG PASSWORD')
