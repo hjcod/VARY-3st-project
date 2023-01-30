@@ -4,6 +4,7 @@ import * as updateController from "../controllers/updateController";
 const router: Router = express.Router();
 
 router.patch('/UserDetail', updateController.userDetail);
-// router.patch('/EmailPlan', updateController.emailPlan)
+router.patch('/EmailPlan', updateController.emailPlan)
+router.patch('/paymentDetail', updateController.paymentDetail)
 
 module.exports = router;
