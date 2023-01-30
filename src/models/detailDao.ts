@@ -1,33 +1,6 @@
 import { sequelize } from "../models/index";
 import { QueryTypes } from "sequelize";
 
-export const getUserInfo = async (page:number) => {
-  const offset = page * 10
-  const limit = 10
-  const query = 
-  `SELECT 
-   id,
-   email,
-   TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI')
-   created_at,TO_CHAR(TO_TIMESTAMP(last_login / 1000), 'YYYY-MM-DD HH24:MI') 
-   last_login,
-   current_email_sent_number as total_email_number,
-   current_webpage_view as total_webpage_view, a.total
-  FROM tbl_user
-  LEFT JOIN (
-    SELECT
-    user_id as uid,
-    SUM (total_amount) as total
-  FROM tbl_payment_history
-  WHERE status = TRUE
-  GROUP BY user_id) as a ON a.uid = tbl_user.id
-  WHERE deleted_at ISNULL AND last_login IS NOT NULL AND deleted_at IS NULL
-  LIMIT ${limit} OFFSET ${offset}
-  `;
-  const [result] = await sequelize.query(query);
-  return result;
-};
-
 export const getUserDetail = async (userId: string) => {
   const userInfo = await sequelize.query(
     `SELECT

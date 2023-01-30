@@ -20,6 +20,3 @@ export const getPaymentInfo = async (userId: string) => {
   return result;
 };
 
-
-
-

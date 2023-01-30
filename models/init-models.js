@@ -141,7 +141,7 @@ function initModels(sequelize) {
   tbl_user_click.belongsTo(tbl_link, { as: "link", foreignKey: "link_id"});
   tbl_link.hasMany(tbl_user_click, { as: "tbl_user_clicks", foreignKey: "link_id"});
   tbl_auto_campaign.belongsTo(tbl_list_customers, { as: "list_customer", foreignKey: "list_customers_id"});
-  tbl_list_customers.hasMany(tbl_auto_campaign, { as: "tbl_auto_campaigns", foreignKey: "list_customers_id"});
+  tbl_list_customers.hasMany(tbl_auto_campaign, { as: "tbl_auto_campaigns", foreignKey: "list_customers_id" });
   tbl_campaign.belongsTo(tbl_list_customers, { as: "list_customer", foreignKey: "list_customers_id"});
   tbl_list_customers.hasMany(tbl_campaign, { as: "tbl_campaigns", foreignKey: "list_customers_id"});
   tbl_customer.belongsTo(tbl_list_customers, { as: "list_customer", foreignKey: "list_customers_id"});

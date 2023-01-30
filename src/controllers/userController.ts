@@ -9,8 +9,8 @@ export const getUserInfo = catchAsync(async (req: Request, res: Response) => {
 });
 
 export const getUserDetail = catchAsync(async (req: Request, res: Response) => {
-  const userId = req.params.userId;
-
+  const userId = req.params.UserId;
+  
   if (!userId) {
     raiseCustomError("NEED_USERINFO", 401);
   }
