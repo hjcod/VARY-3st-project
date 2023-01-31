@@ -31,7 +31,7 @@ export const emailPlan = async (data: Request) => {
   const transaction = await sequelize.transaction();
   try {
     await sequelize.query(
-      `UPDATE tbl_payment_history
+      `UPDATE tbl_payment_history as ph
         SET
           plan = '${data.emailPlan}'
         WHERE user_id = '${data.userId}' AND type = 'EMAIL' AND deleted_at IS NULL;

@@ -28,6 +28,21 @@ export const getUserInfo = async (page:number) => {
   return result;
 };
 
+export const getUserInfoByEmail = async(email:string) => {
+  const query = 
+  `SELECT
+    id,
+    password,
+    email,
+    is_admin,
+    username
+  FROM tbl_user
+  WHERE email = '${email}'`
+  
+  const [result]= await sequelize.query(query)
+  return result
+};
+
 export const getUserDetail = async (userId: string) => {
   const userInfo = await sequelize.query(
     `SELECT DISTINCT
