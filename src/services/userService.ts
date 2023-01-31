@@ -25,3 +25,22 @@ export const getPaymentInfo = async (userId: string) => {
   return result;
 };
 
+export const adminSignIn = async (email:string, password:string) =>{
+  const user = await userDao.getUserInfoByEmail(email)
+  
+  const admin:boolean = user[0].is_admin
+  const Email:string = user[0].email
+  
+  const match = await bcrypt.compareSync(password, user.password);   
+  
+    if(!match){
+          throw new Error('WRONG PASSWORD')
+      }
+                                                                                                                                                                                                                                                    
+  const jsonwebtoken = jwt.sign({ admin, Email },Secret,
+    {
+      algorithm,
+      expiresIn: process.env.JWT_EXPIRES_IN
+    })
+  return jsonwebtoken
+}
