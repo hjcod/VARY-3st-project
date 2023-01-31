@@ -31,10 +31,10 @@ export const emailPlan = async (data: Request) => {
   const transaction = await sequelize.transaction();
   try {
     await sequelize.query(
-      `UPDATE tbl_payment_history
+      `UPDATE tbl_payment_history as ph
         SET
-          plan = '${data.plan}'
-        WHERE id = '${data.userId}' AND type = 'EMAIL' AND deleted_at IS NULL;
+          plan = '${data.emailPlan}'
+        WHERE user_id = '${data.userId}' AND type = 'EMAIL' AND deleted_at IS NULL;
       `,
       {
         type: QueryTypes.UPDATE,
@@ -46,6 +46,27 @@ export const emailPlan = async (data: Request) => {
     console.log(error)
   }
 };
+
+export const webPlan = async (data: Request) => {
+  const transaction = await sequelize.transaction();
+  try {
+    await sequelize.query(
+      `UPDATE tbl_payment_history
+        SET
+          plan = '${data.webPlan}'
+        WHERE user_id = '${data.userId}' AND type = 'WEBPAGE' AND deleted_at IS NULL;
+      `,
+      {
+        type: QueryTypes.UPDATE,
+      }
+    )
+    await transaction.commit()
+  } catch (error) {
+    await transaction.rollback()
+    console.log(error)
+  }
+};
+
 
 export const paymentDetail = async (data: Request) => {
   const transaction = await sequelize.transaction();

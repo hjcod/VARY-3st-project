@@ -16,6 +16,12 @@ export const emailPlan = catchAsync(async (req: Request, res: Response) => {
   return res.status(200).json(result);
 });
 
+export const webPlan = catchAsync(async (req: Request, res: Response) => {
+  const data = req.body;
+  const result = await updateService.webPlan(data);
+  return res.status(200).json(result);
+});
+
 export const paymentDetail = catchAsync(async (req: Request, res: Response) => {
   const data = req.body;
   const result = await updateService.paymentDetail(data);
