@@ -68,6 +68,7 @@ export const getUserDetail = async (userId: string) => {
 export const getServiceInfo = async (userId: string) => {
   const emailInfo = await sequelize.query(
     `SELECT
+        u.id,
         ph.plan,
         u.current_email_sent_number,
         TO_CHAR(TO_TIMESTAMP(ps.schedule_at / 1000), 'YYYY-MM-DD HH24:MI') schedule_at,
@@ -106,6 +107,7 @@ export const getPaymentInfo = async (userId: string) => {
 
   const paymentInfo: any = await sequelize.query(
     `SELECT
+        id,
         payment_info_card_number,
         company_name,
         payment_info_business_license,
@@ -120,6 +122,7 @@ export const getPaymentInfo = async (userId: string) => {
   
   const paymentDetail = await sequelize.query(
     `SELECT
+        user_id,
         TO_CHAR(created_at, 'YYYY-MM-DD HH24:MI') created_at,
         type,
         plan,
