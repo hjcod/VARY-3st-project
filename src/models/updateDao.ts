@@ -33,7 +33,7 @@ export const emailPlan = async (data: Request) => {
     await sequelize.query(
       `UPDATE tbl_payment_history
         SET
-          plan = '${data.plan}'
+          plan = '${data.emailPlan}'
         WHERE user_id = '${data.userId}' AND type = 'EMAIL' AND deleted_at IS NULL;
       `,
       {
@@ -53,7 +53,7 @@ export const webPlan = async (data: Request) => {
     await sequelize.query(
       `UPDATE tbl_payment_history
         SET
-          plan = '${data.plan}'
+          plan = '${data.webPlan}'
         WHERE user_id = '${data.userId}' AND type = 'WEBPAGE' AND deleted_at IS NULL;
       `,
       {
