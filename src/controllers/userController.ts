@@ -37,4 +37,11 @@ export const getPaymentInfo = catchAsync(async (req: Request, res: Response) => 
   const userDetail = await userService. getPaymentInfo(userId);
   return res.status(200).json(userDetail);
 });
+export const adminSignIn = catchAsync(async (req: Request, res: Response)=> {
+  const {email, password} = req.body
+  
+  const accessToken = await userService.adminSignIn(email,password)
+
+  return res.status(200).json({ accessToken: accessToken })
+})
 
